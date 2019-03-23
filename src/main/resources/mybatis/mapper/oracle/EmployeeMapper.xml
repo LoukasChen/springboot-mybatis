@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.csp.dao.oracle.EmployeeMapper">
+
+    <!--配置单表字段映射 -->
+    <resultMap id="empMap" type="com.csp.entity.Employee">
+        <id column="EMPID" property="empId"/>
+        <result column="ENAME" property="eName"/>
+        <result column="SAL" property="sal"/>
+        <result column="DEPTID" property="deptId"/>
+    </resultMap>
+
+    <!--配置一对一关联查询字段映射 -->
+    <resultMap id="empdeptMap" type="com.csp.entity.EmpDept">
+        <id column="EMPID" property="empId"/>
+        <result column="ENAME" property="eName"/>
+        <result column="SAL" property="sal"/>
+        <association property="dept" javaType="com.csp.entity.Dept">
+            <result column="DNAME" property="dName"/>
+        </association>
+    </resultMap>
+
+    <sql id="baseList">
+        EMPID,ENAME,SAL,DEPTID
+    </sql>
+
+    <!--根据员工id查询员工信息-->
+    <select id="selectEmpById" resultMap="empMap">
+		select
+		<include refid="baseList"/>
+        from EMP
+         where EMPID = #{id}
+	</select>
+
+    <!--查询员工表所有信息-->
+    <select id="selectEmpList" resultMap="empMap">
+        select
+        <include refid="baseList"/>
+        from EMP
+    </select>
+
+    <!-- 关联查询员工表和部门表-->
+    <select id="selectEmpDeptList" resultMap="empdeptMap">
+        select
+        e.EMPID,e.ENAME,e.SAL,d.DNAME
+        from EMP e left JOIN DEPT d on
+        e.DEPTID = d.DEPTID
+    </select>
+
+    <insert id="addEmp">
+	    insert into EMP (EMPID, ENAME, SAL, DEPTID)
+	       values
+	     (#{empId}, #{eName}, #{sal}, #{deptId})
+	</insert>
+
+    <update id="updateEmpById">
+        update EMP set
+        EMPID = #{empId},ENAME = #{eName}, SAL = #{sal}, DEPTID = #{deptId}
+        where EMPID = #{id}
+    </update>
+
+    <delete id="deleteEmpById">
+        delete from EMP
+        where EMPID = #{id}
+    </delete>
+
+</mapper>
