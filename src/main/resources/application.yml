@@ -8,7 +8,7 @@ spring:
       driver-class-name: oracle.jdbc.OracleDriver
       url: jdbc:oracle:thin:@localhost:1521:orcl
       username: scott
-      password: aBdPIswWEyrkl8LssWEdJbARsis4V2nz6fsgP/ea7LegqwuSfNze5t0WWa02eCJ8NJKxXj8w2g59z2rVTg4U4Q==
+      password: csp
       type: com.alibaba.druid.pool.DruidDataSource
 
 #配置多数据源
@@ -16,17 +16,23 @@ spring:
       driver-class-name: oracle.jdbc.OracleDriver
       url: jdbc:oracle:thin:@localhost:1521:orcl
       username: test2
-      password: ggAxm4cfF7CHscBUYdlDQBNoUBiQzvDrNlG2AJ1L6nfJ2Yc4kEJd43gB7yW94f0U6sjBtPmf3r8EHIhQvSKkGw==
+      password: 123
       type: com.alibaba.druid.pool.DruidDataSource
 
-
+#配置多数据源
+#    oracle:
+#      driver-class-name: oracle.jdbc.OracleDriver
+#      url: jdbc:oracle:thin:@localhost:1521:orcl
+#      username: scott
+#      password: csp
+#      type: com.alibaba.druid.pool.DruidDataSource
 
 mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
   #mapper-locations: classpath:mybatis/**/*Mapper.xml
 
 pagehelper:
-  helperDialect: oracle
+  helperDialect: mysql
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
