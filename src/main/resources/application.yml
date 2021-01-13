@@ -4,6 +4,14 @@ server:
 #单数据源
 spring:
   datasource:
+    oracle:
+      driver-class-name: oracle.jdbc.OracleDriver
+      url: jdbc:oracle:thin:@localhost:1521:orcl
+      username: scott
+      password: csp
+      type: com.alibaba.druid.pool.DruidDataSource
+
+#配置多数据源
     mysql:
       driver-class-name: oracle.jdbc.OracleDriver
       url: jdbc:oracle:thin:@localhost:1521:orcl
@@ -18,7 +26,6 @@ spring:
 #      username: scott
 #      password: csp
 #      type: com.alibaba.druid.pool.DruidDataSource
-
 
 mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
