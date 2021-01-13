@@ -19,13 +19,20 @@ spring:
       password: 123
       type: com.alibaba.druid.pool.DruidDataSource
 
+#配置多数据源
+#    oracle:
+#      driver-class-name: oracle.jdbc.OracleDriver
+#      url: jdbc:oracle:thin:@localhost:1521:orcl
+#      username: scott
+#      password: csp
+#      type: com.alibaba.druid.pool.DruidDataSource
 
 mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
   #mapper-locations: classpath:mybatis/**/*Mapper.xml
 
 pagehelper:
-  helperDialect: oracle
+  helperDialect: mysql
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
